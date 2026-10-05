@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <string name="kernel_manager_title">Kernel Manager</string>
+    <string name="kernel_manager_summary">Частоты CPU и GPU, governor и текущая статистика</string>
+    <string name="kernel_manager_description">Изменения применяются сразу. Температурные ограничения и ограничения питания продолжают действовать.</string>
+    <string name="kernel_manager_apply_failed">Не удалось применить или сохранить настройку. Показаны фактические значения ядра.</string>
+    <string name="kernel_manager_live_metrics">Текущая статистика</string>
+    <string name="kernel_manager_cpu_load">Загрузка CPU</string>
+    <string name="kernel_manager_gpu_load">Загрузка GPU</string>
+    <string name="kernel_manager_gpu_frequency">Частота GPU</string>
+    <string name="kernel_manager_loading">Загрузка параметров ядра…</string>
+    <string name="kernel_manager_unavailable">На этом устройстве нет доступных для изменения параметров ядра.</string>
+    <string name="kernel_manager_apply_on_boot">Применять при загрузке</string>
+    <string name="kernel_manager_apply_on_boot_summary">Восстанавливать сохранённые значения после перезагрузки. По умолчанию выключено.</string>
+    <string name="kernel_manager_reset">Сбросить настройки</string>
+    <string name="kernel_manager_reset_summary">Восстановить значения, считанные при запуске системы, и выключить применение при загрузке?</string>
+    <string name="kernel_manager_apply">Применить</string>
+    <string name="kernel_manager_min_frequency">Минимальная частота</string>
+    <string name="kernel_manager_max_frequency">Максимальная частота</string>
+    <string name="kernel_manager_governor">Governor CPU</string>
+    <string name="kernel_manager_no_limit">Без ограничения</string>
+</resources>

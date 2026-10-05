@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <string name="kernel_manager_title">Kernel Manager</string>
+    <string name="kernel_manager_summary">CPU and GPU frequencies, governors and live statistics</string>
+    <string name="kernel_manager_description">Changes take effect immediately. Thermal and power limits still apply.</string>
+    <string name="kernel_manager_apply_failed">Could not apply or save the setting. Actual kernel values are shown.</string>
+    <string name="kernel_manager_live_metrics">Live statistics</string>
+    <string name="kernel_manager_cpu_load">CPU usage</string>
+    <string name="kernel_manager_gpu_load">GPU usage</string>
+    <string name="kernel_manager_gpu_frequency">GPU frequency</string>
+    <string name="kernel_manager_loading">Loading kernel controls…</string>
+    <string name="kernel_manager_unavailable">No writable kernel controls are available on this device.</string>
+    <string name="kernel_manager_apply_on_boot">Apply on boot</string>
+    <string name="kernel_manager_apply_on_boot_summary">Restore saved values after restart. Off by default.</string>
+    <string name="kernel_manager_reset">Reset settings</string>
+    <string name="kernel_manager_reset_summary">Restore the values captured at system startup and turn off apply on boot?</string>
+    <string name="kernel_manager_apply">Apply</string>
+    <string name="kernel_manager_min_frequency">Minimum frequency</string>
+    <string name="kernel_manager_max_frequency">Maximum frequency</string>
+    <string name="kernel_manager_governor">CPU governor</string>
+    <string name="kernel_manager_no_limit">No limit</string>
+</resources>

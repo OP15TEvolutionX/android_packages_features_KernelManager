@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -44,7 +45,8 @@ import com.android.internal.kernel.AxKernelControl
 import com.android.internal.kernel.AxKernelManager
 import com.android.internal.kernel.AxKernelMetrics
 import com.android.settings.R
-import com.android.settingslib.spa.framework.theme.SettingsTheme
+import org.evolution.settings.extrafeatures.ui.ExtraFeaturesCard
+import org.evolution.settings.extrafeatures.ui.ExtraFeaturesTheme
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -58,7 +60,7 @@ class KernelManagerSettings : Fragment() {
             savedInstanceState: Bundle?): View = ComposeView(requireContext()).apply {
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
         setContent {
-            SettingsTheme { KernelManagerScreen(viewLifecycleOwner.lifecycle) }
+            ExtraFeaturesTheme { KernelManagerScreen(viewLifecycleOwner.lifecycle) }
         }
         activity?.title = getString(R.string.kernel_manager_title)
     }
@@ -116,7 +118,7 @@ private fun KernelManagerScreen(lifecycle: Lifecycle) {
                 style = MaterialTheme.typography.bodyMedium)
         if (error) Text(stringResource(R.string.kernel_manager_apply_failed),
                 color = MaterialTheme.colorScheme.error)
-        Card(Modifier.fillMaxWidth()) {
+        ExtraFeaturesCard(shape = RoundedCornerShape(24.dp)) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Text(stringResource(R.string.kernel_manager_live_metrics),
                         style = MaterialTheme.typography.titleMedium)
@@ -139,7 +141,7 @@ private fun KernelManagerScreen(lifecycle: Lifecycle) {
             Text(stringResource(R.string.kernel_manager_unavailable))
         } else {
             data.controls.groupBy { it.group }.forEach { (group, controls) ->
-                Card(Modifier.fillMaxWidth()) {
+                ExtraFeaturesCard(shape = RoundedCornerShape(24.dp)) {
                     Column(Modifier.padding(vertical = 8.dp)) {
                         Text(group, Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                                 style = MaterialTheme.typography.titleMedium)
@@ -165,7 +167,7 @@ private fun KernelManagerScreen(lifecycle: Lifecycle) {
                 }
             }
         }
-        Card(Modifier.fillMaxWidth()) {
+        ExtraFeaturesCard(shape = RoundedCornerShape(24.dp)) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) {

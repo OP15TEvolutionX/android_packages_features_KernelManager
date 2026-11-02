@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -47,6 +48,7 @@ import com.android.internal.kernel.AxKernelMetrics
 import com.android.settings.R
 import org.evolution.settings.extrafeatures.ui.ExtraFeaturesCard
 import org.evolution.settings.extrafeatures.ui.ExtraFeaturesTheme
+import org.evolution.settings.extrafeatures.ui.ExtraFeaturesSwitch
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -170,19 +172,23 @@ private fun KernelManagerScreen(lifecycle: Lifecycle) {
         ExtraFeaturesCard(shape = RoundedCornerShape(24.dp)) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.weight(1f)) {
+                    Column(Modifier.weight(1f).padding(end = 16.dp)) {
                         Text(stringResource(R.string.kernel_manager_apply_on_boot))
                         Text(stringResource(R.string.kernel_manager_apply_on_boot_summary),
                                 style = MaterialTheme.typography.bodySmall)
                     }
-                    Switch(checked = data?.applyOnBoot == true,
+                    ExtraFeaturesSwitch(checked = data?.applyOnBoot == true,
                             enabled = !busy && data != null && data.controls.isNotEmpty(),
                             onCheckedChange = { enabled ->
                                 runAction { AxKernelManager.setApplyOnBoot(enabled) }
                             })
                 }
-                TextButton(enabled = !busy && data != null, onClick = { resetDialog = true }) {
-                    Text(stringResource(R.string.kernel_manager_reset))
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                    // No inner padding, so the label lines up with the switch edge.
+                    TextButton(enabled = !busy && data != null, onClick = { resetDialog = true },
+                            contentPadding = PaddingValues(0.dp)) {
+                        Text(stringResource(R.string.kernel_manager_reset))
+                    }
                 }
             }
         }
@@ -264,6 +270,7 @@ private fun controlLabel(control: AxKernelControl, value: Int): String {
 }
 
 private fun frequency(hz: Long): String = if (hz <= 0L) "—"
-        else String.format(Locale.getDefault(), "%.0f MHz", hz / 1_000_000.0)
+        else if (hz >= 1_000_000_000L) String.format(Locale.US, "%.2f GHz", hz / 1_000_000_000.0)
+        else String.format(Locale.US, "%d MHz", hz / 1_000_000L)
 private fun percent(value: Float?): String = if (value == null || value < 0f) "—"
         else String.format(Locale.getDefault(), "%.1f %%", value)

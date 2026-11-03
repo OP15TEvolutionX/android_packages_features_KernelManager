@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 <resources>
-    <string name="kernel_manager_title">Kernel Manager</string>
+    <string name="kernel_manager_title">Менеджер ядра</string>
     <string name="kernel_manager_summary">Частоты CPU и GPU, governor и текущая статистика</string>
     <string name="kernel_manager_description">Изменения применяются сразу. Температурные ограничения и ограничения питания продолжают действовать.</string>
     <string name="kernel_manager_apply_failed">Не удалось применить или сохранить настройку. Показаны фактические значения ядра.</string>

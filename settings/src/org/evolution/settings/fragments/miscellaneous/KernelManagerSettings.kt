@@ -144,8 +144,10 @@ private fun KernelManagerScreen(lifecycle: Lifecycle) {
         } else {
             data.controls.groupBy { it.group }.forEach { (group, controls) ->
                 ExtraFeaturesCard(shape = RoundedCornerShape(24.dp)) {
-                    Column(Modifier.padding(vertical = 8.dp)) {
-                        Text(group, Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    // Same 16dp edges and 8dp row gaps as the statistics card; the 4dp row padding
+                    // keeps a full-width touch target.
+                    Column(Modifier.padding(vertical = 12.dp)) {
+                        Text(group, Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
                                 style = MaterialTheme.typography.titleMedium)
                         controls.sortedBy { control ->
                             when (control.type) {
@@ -159,7 +161,8 @@ private fun KernelManagerScreen(lifecycle: Lifecycle) {
                         }.forEach { control ->
                             Row(Modifier.fillMaxWidth().clickable(enabled = !busy) {
                                 selectedControl = control
-                            }.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
+                            }.padding(horizontal = 16.dp, vertical = 4.dp),
+                                    verticalAlignment = Alignment.CenterVertically) {
                                 Text(controlTitle(control.type), Modifier.weight(1f))
                                 Text(controlLabel(control, control.currentValue),
                                         color = MaterialTheme.colorScheme.primary)

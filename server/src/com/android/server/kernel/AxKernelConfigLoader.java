@@ -33,6 +33,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 import java.util.List;
 import java.util.Locale;
 
@@ -348,8 +349,10 @@ final class AxKernelConfigLoader {
 
     private static int[] readPolicyFrequencies(File policyDir) {
         int[] frequencies = AxKernelUtils.readSysfsIntList(new File(policyDir, NODE_SCALING_AVAIL_FREQS).getAbsolutePath());
-        if (frequencies.length > 0) return frequencies;
-        frequencies = AxKernelUtils.readSysfsIntList(new File(policyDir, NODE_SCALING_BOOST_FREQS).getAbsolutePath());
+        // Boost steps above the regular table are listed separately but are valid limits too.
+        int[] boost = AxKernelUtils.readSysfsIntList(new File(policyDir, NODE_SCALING_BOOST_FREQS).getAbsolutePath());
+        frequencies = IntStream.concat(Arrays.stream(frequencies), Arrays.stream(boost))
+                .filter(f -> f > 0).distinct().sorted().toArray();
         if (frequencies.length > 0) return frequencies;
         return readFallbackFrequencies(policyDir);
     }
